@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 224 54% 49%;
+  --primary-foreground: 0 0% 100%;
+  --background: 60 13% 96%;
+  --foreground: 0 0% 20%;
+}
+
+@layer base {
+  body {
+    @apply bg-[#f6f6f4];
+    @apply text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-outfit;
+    @apply font-bold;
+    @apply text-[#2c5dcf];
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#2c5dcf];
+    @apply text-white;
+    @apply font-outfit;
+    @apply font-semibold;
+    @apply py-3;
+    @apply px-6;
+    @apply rounded-md;
+    @apply transition-all;
+    @apply duration-300;
+    @apply ease-in-out;
+    @apply hover:opacity-90;
+    @apply hover:shadow-lg;
+    @apply text-lg;
+  }
+
+  .project-stack {
+    @apply relative;
+    @apply h-full;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+  }
+
+  .project-card {
+    @apply absolute;
+    @apply inset-0;
+    @apply bg-white;
+    @apply rounded-lg;
+    @apply shadow-xl;
+    @apply overflow-hidden;
+    @apply transition-all;
+    @apply duration-300;
+    @apply opacity-0;
+    transform: translateX(100%);
+  }
+
+  .project-card.active {
+    @apply opacity-100;
+    transform: translateX(0);
+  }
+
+  .project-card.exit {
+    transform: translateX(-100%);
+    @apply opacity-0;
+  }
+
+  .project-stack::before,
+  .project-stack::after {
+    content: "";
+    display: none;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slide-in-up {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.slide-out-right {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
